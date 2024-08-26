@@ -60,7 +60,7 @@ export function UserAuthForm({ className, type, ...props }: UserAuthFormProps) {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid gap-2">
           <div className="grid gap-1">
-            <Label className="sr-only" htmlFor="email">
+            <Label className="block mb-1 text-sm font-medium" htmlFor="email">
               Email
             </Label>
             <Input
@@ -76,6 +76,23 @@ export function UserAuthForm({ className, type, ...props }: UserAuthFormProps) {
             {errors?.email && (
               <p className="px-1 text-xs text-red-600">
                 {errors.email.message}
+              </p>
+            )}
+          </div>
+          <div className="grid gap-1 mb-1">
+            <Label className="block mb-1 text-sm font-medium" htmlFor="password">
+              password
+            </Label>
+            <Input
+              id="password"
+              type="password"
+              placeholder="Minimum 6 characters"
+              disabled={isLoading || isGoogleLoading}
+              {...register("password")}
+            />
+            {errors?.password && (
+              <p className="px-1 text-xs text-red-600">
+                {errors.password.message}
               </p>
             )}
           </div>
