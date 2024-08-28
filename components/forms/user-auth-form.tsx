@@ -38,6 +38,7 @@ export function UserAuthForm({ className, type, ...props }: UserAuthFormProps) {
 
     const signInResult = await signIn("resend", {
       email: data.email.toLowerCase(),
+      // password: data.password,
       redirect: false,
       callbackUrl: searchParams?.get("from") || "/dashboard",
     });
@@ -79,7 +80,7 @@ export function UserAuthForm({ className, type, ...props }: UserAuthFormProps) {
               </p>
             )}
           </div>
-          <div className="grid gap-1 mb-1">
+          {/* <div className="grid gap-1 mb-1">
             <Label className="block mb-1 text-sm font-medium" htmlFor="password">
               password
             </Label>
@@ -95,7 +96,7 @@ export function UserAuthForm({ className, type, ...props }: UserAuthFormProps) {
                 {errors.password.message}
               </p>
             )}
-          </div>
+          </div> */}
           <button className={cn(buttonVariants())} disabled={isLoading}>
             {isLoading && (
               <Icons.spinner className="mr-2 size-4 animate-spin" />
