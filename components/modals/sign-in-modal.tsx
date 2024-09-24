@@ -44,7 +44,7 @@ function SignInModal({
               signIn("google", { redirect: false }).then(() =>
                 setTimeout(() => {
                   setShowSignInModal(false);
-                }, 400),
+                }, 0),
               );
             }}
           >

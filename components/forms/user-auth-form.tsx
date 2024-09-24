@@ -38,22 +38,42 @@ export function UserAuthForm({ className, type, ...props }: UserAuthFormProps) {
 
     const signInResult = await signIn("resend", {
       email: data.email.toLowerCase(),
-      // password: data.password,
+      password: data.password,
       redirect: false,
       callbackUrl: searchParams?.get("from") || "/dashboard",
     });
 
     setIsLoading(false);
 
+    console.log(111,signInResult);
     if (!signInResult?.ok) {
+      console.log(111,signInResult);
+      
       return toast.error("Something went wrong.", {
         description: "Your sign in request failed. Please try again."
       });
     }
+    // create temporary userinfo to keep password 
+    // fetch(`/api/saveTemporaryUser`, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({
+    //     email: data.email.toLowerCase(), // 转换为小写
+    //     password: data.password,
+    //   })
+    // }).then(async (res) => {
+    //   if (res.status === 200) {
+    //     return toast.success("Check your email", {
+    //       description: "We sent you a login link. Be sure to check your spam too.",
+    //     })
+    //   } else {
+    //     const error = await res.text();
+    //     throw error;
+    //   }
+    // });
 
-    return toast.success("Check your email", {
-      description: "We sent you a login link. Be sure to check your spam too.",
-    });
   }
 
   return (
@@ -80,7 +100,7 @@ export function UserAuthForm({ className, type, ...props }: UserAuthFormProps) {
               </p>
             )}
           </div>
-          {/* <div className="grid gap-1 mb-1">
+          <div className="grid gap-1 mb-1">
             <Label className="block mb-1 text-sm font-medium" htmlFor="password">
               password
             </Label>
@@ -96,7 +116,7 @@ export function UserAuthForm({ className, type, ...props }: UserAuthFormProps) {
                 {errors.password.message}
               </p>
             )}
-          </div> */}
+          </div>
           <button className={cn(buttonVariants())} disabled={isLoading}>
             {isLoading && (
               <Icons.spinner className="mr-2 size-4 animate-spin" />

@@ -53,7 +53,7 @@ export const MagicLinkEmail = ({
           </Text>
           {mailType === "login" ? (
             <Text className="text-base">
-              Ifxxx you did not try to log into your account, you can safely ignore
+              If you did not try to log into your account, you can safely ignore
               it.
             </Text>
           ) : null}
